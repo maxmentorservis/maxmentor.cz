@@ -43,6 +43,20 @@
         .nav-logo { font-weight: 800; font-size: 1.1rem; color: var(--blue-apple); text-decoration: none; }
         .nav-links { display: flex; gap: 20px; align-items: center; list-style: none; }
 
+        /* MENU MOBILE ICON */
+        .menu-toggle { display: none; background: none; border: none; font-size: 24px; cursor: pointer; color: var(--text-main); }
+
+        /* SIDEBAR MOBILE */
+        .mobile-sidebar {
+            position: fixed; top: 0; right: -100%; width: 280px; height: 100%;
+            background: white; z-index: 10001; padding: 40px 20px;
+            box-shadow: -10px 0 30px rgba(0,0,0,0.1); transition: 0.4s;
+            display: flex; flex-direction: column; gap: 20px;
+        }
+        .mobile-sidebar.active { right: 0; }
+        .mobile-sidebar a { text-decoration: none; color: var(--text-main); font-size: 18px; font-weight: 700; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        .close-menu { align-self: flex-end; font-size: 30px; cursor: pointer; margin-bottom: 20px; }
+
         .dropdown { position: relative; }
         .dropdown-btn { background: none; border: none; font-size: 13px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 4px; color: var(--text-main); }
         .dropdown-menu { position: absolute; top: 100%; left: 50%; transform: translateX(-50%); background: white; min-width: 260px; border-radius: 15px; box-shadow: 0 15px 40px rgba(0,0,0,0.1); padding: 10px; opacity: 0; visibility: hidden; transition: 0.3s; }
@@ -81,7 +95,13 @@
 
         footer { padding: 60px 8%; text-align: center; border-top: 1px solid var(--glass-border); }
 
-        @media (max-width: 850px) { .nav-links { display: none; } .image-box { width: 95%; } }
+        /* RESPONSIVE */
+        @media (max-width: 850px) { 
+            .nav-links { display: none; } 
+            .menu-toggle { display: block; }
+            .image-box { width: 95%; } 
+            .hero-title { font-size: 45px; }
+        }
     </style>
 </head>
 <body>
@@ -111,12 +131,25 @@
                 <span data-lang="cz" class="visible">Kontakt</span><span data-lang="en">Contact</span><span data-lang="ua">Контакт</span>
             </a>
             <div class="lang-picker">
-                <button class="active" onclick="setLang('cz')">🇨🇿</button>
-                <button onclick="setLang('en')">🇬🇧</button>
-                <button onclick="setLang('ua')">🇺🇦</button>
+                <button class="active" onclick="setLang('cz')" id="btn-cz">🇨🇿</button>
+                <button onclick="setLang('en')" id="btn-en">🇬🇧</button>
+                <button onclick="setLang('ua')" id="btn-ua">🇺🇦</button>
             </div>
         </div>
+        <button class="menu-toggle" onclick="toggleMobileMenu()">☰</button>
     </nav>
+
+    <div class="mobile-sidebar" id="mobileSidebar">
+        <span class="close-menu" onclick="toggleMobileMenu()">×</span>
+        <a href="#specializace" onclick="toggleMobileMenu()">Služby / Services</a>
+        <a href="#contacto" onclick="toggleMobileMenu()">Kontakt</a>
+        <div style="margin-top: 20px;">
+            <p style="font-size: 12px; margin-bottom: 10px;">Jazyk / Language:</p>
+            <button onclick="setLang('cz')" style="font-size: 25px; background:none; border:none;">🇨🇿</button>
+            <button onclick="setLang('en')" style="font-size: 25px; background:none; border:none; margin: 0 15px;">🇬🇧</button>
+            <button onclick="setLang('ua')" style="font-size: 25px; background:none; border:none;">🇺🇦</button>
+        </div>
+    </div>
 
     <div class="contact-buttons">
         <a href="https://wa.me/420777000000" class="btn-float btn-whatsapp" target="_blank">W</a>
@@ -229,25 +262,18 @@
 
     <script>
         function setLang(lang) {
-            // 1. Ocultar todos los elementos de idioma
             const allElements = document.querySelectorAll('[data-lang]');
-            allElements.forEach(el => {
-                el.classList.remove('visible');
-            });
-
-            // 2. Mostrar solo los del idioma seleccionado
+            allElements.forEach(el => el.classList.remove('visible'));
             const selectedElements = document.querySelectorAll('[data-lang="' + lang + '"]');
-            selectedElements.forEach(el => {
-                el.classList.add('visible');
-            });
-
-            // 3. Actualizar estado de los botones de banderas
+            selectedElements.forEach(el => el.classList.add('visible'));
             const allButtons = document.querySelectorAll('.lang-picker button');
             allButtons.forEach(btn => btn.classList.remove('active'));
-            
-            // Buscar el botón clicado (el que tiene el onclick del idioma actual)
             const activeBtn = document.querySelector(`button[onclick="setLang('${lang}')"]`);
             if(activeBtn) activeBtn.classList.add('active');
+        }
+
+        function toggleMobileMenu() {
+            document.getElementById('mobileSidebar').classList.toggle('active');
         }
     </script>
 </body>
