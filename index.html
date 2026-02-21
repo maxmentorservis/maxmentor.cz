@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Max mentor servis | Glass Perfection</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-top: #a2d2df; 
+            --bg-bottom: #d1e9f0;
+            --text-main: #1d1d1f;
+            --text-secondary: #334155;
+            --blue-apple: #005bb7;
+            --glass-card: rgba(255, 255, 255, 0.45);
+            --glass-border: rgba(255, 255, 255, 0.6);
+            --glass-nav: rgba(162, 210, 223, 0.85);
+        }
+
+        html { scroll-behavior: smooth; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', -apple-system, sans-serif; }
+        
+        body { 
+            background: linear-gradient(180deg, var(--bg-top) 0%, var(--bg-bottom) 50%, #ffffff 100%);
+            background-attachment: fixed;
+            background-size: cover;
+            color: var(--text-main); 
+            -webkit-font-smoothing: antialiased; 
+            overflow-x: hidden; 
+        }
+
+        /* NAVEGACIÓN */
+        nav { 
+            background: var(--glass-nav); 
+            backdrop-filter: saturate(180%) blur(20px); 
+            height: 52px; width: 100%; position: fixed; top: 0; z-index: 9999; 
+            display: flex; justify-content: space-between; align-items: center; 
+            padding: 0 8%; border-bottom: 1px solid rgba(255,255,255,0.2); 
+        }
+        .nav-logo { font-weight: 800; font-size: 1.1rem; color: var(--text-main); text-decoration: none; }
+        
+        .nav-links { display: flex; gap: 25px; align-items: center; list-style: none; }
+
+        /* DROPDOWN PC */
+        .dropdown { position: relative; display: flex; align-items: center; }
+        .dropdown-btn { 
+            background: none; border: none; font-size: 14px; font-weight: 600; 
+            color: var(--text-main); cursor: pointer; padding: 15px 0;
+            display: flex; align-items: center; gap: 4px;
+        }
+        
+        .dropdown-btn::after { 
+            content: '▾'; font-size: 12px; opacity: 0; 
+            transform: translateY(-2px); transition: opacity 0.3s ease;
+        }
+        .dropdown:hover .dropdown-btn::after { opacity: 0.5; }
+
+        .dropdown-menu {
+            position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(30px);
+            min-width: 290px; border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+            border: 1px solid var(--glass-border); padding: 10px; opacity: 0; visibility: hidden; transition: 0.3s;
+        }
+        .dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; }
+        .dropdown-menu a { color: var(--text-main); padding: 12px 15px; text-decoration: none; display: block; font-size: 13px; font-weight: 500; border-radius: 12px; transition: 0.2s; }
+        .dropdown-menu a:hover { background: var(--blue-apple); color: white; }
+
+        /* MOBILE MENU */
+        .menu-toggle { display: none; font-size: 24px; cursor: pointer; background: none; border: none; }
+        .mobile-sidebar {
+            position: fixed; top: 0; right: -100%; width: 85%; height: 100%;
+            background: rgba(162, 210, 223, 0.98); backdrop-filter: blur(30px);
+            z-index: 10000; padding: 60px 30px; transition: 0.4s;
+            display: flex; flex-direction: column; gap: 15px; box-shadow: -10px 0 30px rgba(0,0,0,0.05);
+        }
+        .mobile-sidebar.active { right: 0; }
+
+        /* SECCIONES */
+        section { padding: 80px 8%; text-align: center; }
+        h1 { font-size: clamp(34px, 7vw, 56px); font-weight: 800; letter-spacing: -2px; line-height: 1.1; margin-bottom: 20px; }
+        
+        .image-box { width: 65%; max-width: 650px; margin: 30px auto; border-radius: 28px; overflow: hidden; box-shadow: 0 25px 50px rgba(0,0,0,0.12); background: var(--glass-card); padding: 10px; border: 1px solid var(--glass-border); }
+        .image-box img { width: 100%; display: block; height: auto; border-radius: 20px; }
+
+        /* GRID SERVICIOS */
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; max-width: 1200px; margin: 40px auto; }
+        .service-card { background: var(--glass-card); backdrop-filter: blur(15px); border-radius: 30px; border: 1px solid var(--glass-border); text-align: left; transition: 0.4s; overflow: hidden; display: flex; flex-direction: column; }
+        .service-card:hover { transform: translateY(-10px); background: rgba(255,255,255,0.7); }
+        .service-img { width: 100%; height: 230px; object-fit: cover; border-bottom: 1px solid var(--glass-border); }
+        .service-content { padding: 30px; }
+        .service-card h3 { font-size: 20px; margin-bottom: 12px; color: var(--blue-apple); font-weight: 700; }
+        .service-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+
+        /* FORMULARIO */
+        .contact-form-container { max-width: 600px; margin: 40px auto; background: var(--glass-card); backdrop-filter: blur(20px); padding: 40px; border-radius: 30px; border: 1px solid var(--glass-border); text-align: left; }
+        input, textarea { width: 100%; padding: 15px; margin-bottom: 15px; border-radius: 12px; border: 1px solid rgba(0,0,0,0.1); background: rgba(255,255,255,0.8); font-size: 16px; outline: none; }
+        .btn-submit { width: 100%; background: var(--blue-apple); color: white; padding: 18px; border-radius: 12px; border: none; font-size: 17px; font-weight: 700; cursor: pointer; }
+
+        [data-lang] { display: none; }
+        [data-lang].visible { display: block; }
+        .lang-picker button { background: none; border: none; cursor: pointer; font-size: 1.2rem; margin-left: 10px; opacity: 0.4; transition: 0.3s; }
+        .lang-picker button.active { opacity: 1; transform: scale(1.2); }
+
+        @media (max-width: 850px) { .nav-links { display: none; } .menu-toggle { display: block; } .image-box { width: 95%; } }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#home" class="nav-logo">Max mentor servis</a>
+        <div class="nav-links">
+            <div class="dropdown">
+                <button class="dropdown-btn">
+                    <span data-lang="cz" class="visible">Služby</span>
+                    <span data-lang="en">Services</span>
+                    <span data-lang="ua">Послуги</span>
+                </button>
+                <div class="dropdown-menu">
+                    <a href="#servis1">
+                        <span data-lang="cz" class="visible">Servis oken a dveří</span>
+                        <span data-lang="en">Window & Door Service</span>
+                        <span data-lang="ua">Сервіс вікон та дверей</span>
+                    </a>
+                    <a href="#servis2">
+                        <span data-lang="cz" class="visible">Dodání a montáž nových oken</span>
+                        <span data-lang="en">New Supply & Installation</span>
+                        <span data-lang="ua">Доставка та монтаж вікон</span>
+                    </a>
+                    <a href="#servis3">
+                        <span data-lang="cz" class="visible">Výškové práce</span>
+                        <span data-lang="en">High-Altitude Works</span>
+                        <span data-lang="ua">Висотні роботи</span>
+                    </a>
+                    <a href="#servis4">
+                        <span data-lang="cz" class="visible">Výměny skel</span>
+                        <span data-lang="en">Glass Replacement</span>
+                        <span data-lang="ua">Заміна скла</span>
+                    </a>
+                    <a href="#servis5">
+                        <span data-lang="cz" class="visible">Výměny nadrozměrných skel</span>
+                        <span data-lang="en">Large Glass Replacement</span>
+                        <span data-lang="ua">Заміна великогабаритного скла</span>
+                    </a>
+                </div>
+            </div>
+            <a href="#contacto" style="text-decoration:none; color:inherit; font-weight:600; font-size:14px;">
+                <span data-lang="cz" class="visible">Kontakt</span>
+                <span data-lang="en">Contact</span>
+                <span data-lang="ua">Контакт</span>
+            </a>
+            <div class="lang-picker">
+                <button class="active" onclick="setLang('cz')" id="f-cz">🇨🇿</button>
+                <button onclick="setLang('en')" id="f-en">🇬🇧</button>
+                <button onclick="setLang('ua')" id="f-ua">🇺🇦</button>
+            </div>
+        </div>
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    </nav>
+
+    <div class="mobile-sidebar" id="mobileMenu">
+        <span style="position:absolute; top:20px; right:30px; font-size:30px; cursor:pointer;" onclick="toggleMenu()">×</span>
+        <a href="#servis1" onclick="toggleMenu()"><span data-lang="cz" class="visible">Servis oken</span><span data-lang="en">Window Service</span><span data-lang="ua">Сервіс вікон</span></a>
+        <a href="#servis2" onclick="toggleMenu()"><span data-lang="cz" class="visible">Montáž oken</span><span data-lang="en">Installation</span><span data-lang="ua">Монтаж вікон</span></a>
+        <a href="#servis3" onclick="toggleMenu()"><span data-lang="cz" class="visible">Výškové práce</span><span data-lang="en">Altitude works</span><span data-lang="ua">Висотні роботи</span></a>
+        <a href="#servis4" onclick="toggleMenu()"><span data-lang="cz" class="visible">Výměny skel</span><span data-lang="en">Glass Replacement</span><span data-lang="ua">Заміна скла</span></a>
+        <a href="#contacto" onclick="toggleMenu()"><span data-lang="cz" class="visible">Kontakt</span><span data-lang="ua">Контакт</span></a>
+    </div>
+
+    <section id="home" style="padding-top: 150px;">
+        <h1 data-lang="cz" class="visible">Křišťálová čistota.</h1>
+        <h1 data-lang="en">Crystal Clarity.</h1>
+        <h1 data-lang="ua">Кришталева чистота.</h1>
+        <div class="image-box"><img src="antes-despues.png"></div>
+    </section>
+
+    <section id="specializace">
+        <div class="services-grid">
+            <div class="service-card" id="servis1">
+                <img src="dvojskla.png" class="service-img">
+                <div class="service-content">
+                    <h3 data-lang="cz" class="visible">Servis oken a dveří</h3>
+                    <h3 data-lang="en">Window & Door Service</h3>
+                    <h3 data-lang="ua">Сервіс вікон та дверей</h3>
+                    <p data-lang="cz" class="visible">Kompletní seřízení, údržba a opravy pro bezchybný chod vašich oken.</p>
+                    <p data-lang="en">Complete adjustment, maintenance and repairs for flawless operation.</p>
+                    <p data-lang="ua">Повне регулювання, обслуговування та ремонт для ідеальної роботи ваших вікон.</p>
+                </div>
+            </div>
+            <div class="service-card" id="servis2">
+                <img src="havarijni.png" class="service-img">
+                <div class="service-content">
+                    <h3 data-lang="cz" class="visible">Dodání a montáž nových oken a dveří</h3>
+                    <h3 data-lang="en">Supply & Installation</h3>
+                    <h3 data-lang="ua">Доставка та монтаж вікон та дверей</h3>
+                    <p data-lang="cz" class="visible">Prvotřídní produkty instalované s maximální precizností do vašeho domova.</p>
+                    <p data-lang="en">Top-quality products installed with maximum precision in your home.</p>
+                    <p data-lang="ua">Високоякісна продукція, встановлена з максимальною точністю у вашому домі.</p>
+                </div>
+            </div>
+            <div class="service-card" id="servis3">
+                <img src="bezpecnostni.png" class="service-img">
+                <div class="service-content">
+                    <h3 data-lang="cz" class="visible">Výškové práce</h3>
+                    <h3 data-lang="en">High-Altitude Works</h3>
+                    <h3 data-lang="ua">Висотні роботи</h3>
+                    <p data-lang="cz" class="visible">Profesionální zásahy i na těžko dostupných místech s použitím techniky.</p>
+                    <p data-lang="en">Professional interventions even in hard-to-reach places using specialized equipment.</p>
+                    <p data-lang="ua">Професійне втручання навіть у важкодоступних місцях з використанням техніки.</p>
+                </div>
+            </div>
+            <div class="service-card" id="servis4">
+                <img src="zrcadla.png" class="service-img">
+                <div class="service-content">
+                    <h3 data-lang="cz" class="visible">Výměny skel</h3>
+                    <h3 data-lang="en">Glass Replacement</h3>
+                    <h3 data-lang="ua">Заміна скла</h3>
+                    <p data-lang="cz" class="visible">Rychlá a čistá výměna poškozených nebo nevyhovujících tabulí a dvojskel.</p>
+                    <p data-lang="en">Fast and clean replacement of damaged or unsuitable panes and double glazing.</p>
+                    <p data-lang="ua">Швидка та чиста заміна пошкоджених або невідповідних шиб та склопакетів.</p>
+                </div>
+            </div>
+            <div class="service-card" id="servis5">
+                <img src="pricky.png" class="service-img">
+                <div class="service-content">
+                    <h3 data-lang="cz" class="visible">Výměny nadrozměrných skel</h3>
+                    <h3 data-lang="en">Large Glass Replacement</h3>
+                    <h3 data-lang="ua">Заміна великогабаритного скла</h3>
+                    <p data-lang="cz" class="visible">Specializovaná technika pro bezpečnou manipulaci s těžkými a velkými formáty.</p>
+                    <p data-lang="en">Specialized equipment for safe handling of heavy and large formats.</p>
+                    <p data-lang="ua">Спеціалізована техніка для безпечної роботи з важкими та великими форматами.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="reference">
+        <div style="background: var(--glass-card); border-radius: 40px; overflow: hidden; display: flex; flex-wrap: wrap; border: 1px solid var(--glass-border); text-align: left;">
+            <img src="oficina.png" style="flex: 1; min-width: 300px; max-height: 400px; object-fit: cover;">
+            <div style="flex: 1; padding: 40px; min-width: 300px;">
+                <h3 data-lang="cz" class="visible">Moderní kanceláře v Praze</h3>
+                <h3 data-lang="en">Modern Offices in Prague</h3>
+                <h3 data-lang="ua">Сучасні офіси в Празі</h3>
+                <p data-lang="cz" class="visible">Naše realizace skleněných příček v komerčních prostorech.</p>
+                <p data-lang="en">Our realization of glass partitions in commercial spaces.</p>
+                <p data-lang="ua">Наша реалізація скляних перегородок у комерційних приміщеннях.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto">
+        <h2 data-lang="cz" class="visible">Napište nám</h2>
+        <h2 data-lang="en">Contact us</h2>
+        <h2 data-lang="ua">Напишіть нам</h2>
+        <div class="contact-form-container">
+            <form action="https://formspree.io/f/tu-codigo" method="POST">
+                <input type="text" name="name" required placeholder="Jméno / Name / Ім'я">
+                <input type="text" name="contact" required placeholder="Telefon / E-mail">
+                <textarea name="message" rows="4" placeholder="Vaše poptávka..."></textarea>
+                <button type="submit" class="btn-submit">Odeslat</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 Max mentor servis | Prague, Czech Republic</p>
+    </footer>
+
+    <script>
+        function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('active'); }
+        function setLang(lang) {
+            document.querySelectorAll('[data-lang]').forEach(el => {
+                el.classList.remove('visible');
+                if (el.getAttribute('data-lang') === lang) el.classList.add('visible');
+            });
+            document.querySelectorAll('.lang-picker button').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll(`[onclick="setLang('${lang}')"]`).forEach(b => b.classList.add('active'));
+        }
+    </script>
+</body>
+</html>
