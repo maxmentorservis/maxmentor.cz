@@ -74,8 +74,8 @@
         input, textarea { width: 100%; padding: 15px; margin-bottom: 15px; border-radius: 12px; border: 1px solid rgba(0,0,0,0.1); outline: none; }
         .btn-submit { width: 100%; padding: 18px; background: var(--blue-apple); color: white; border: none; border-radius: 12px; font-weight: 700; cursor: pointer; }
 
-        [data-lang] { display: none; }
-        [data-lang].visible { display: block; }
+        [data-lang] { display: none !important; }
+        [data-lang].visible { display: block !important; }
         .lang-picker button { background: none; border: none; cursor: pointer; font-size: 1.2rem; opacity: 0.5; transition: 0.3s; }
         .lang-picker button.active { opacity: 1; transform: scale(1.2); }
 
@@ -111,9 +111,9 @@
                 <span data-lang="cz" class="visible">Kontakt</span><span data-lang="en">Contact</span><span data-lang="ua">Контакт</span>
             </a>
             <div class="lang-picker">
-                <button class="active" onclick="setLang('cz')" id="btn-cz">🇨🇿</button>
-                <button onclick="setLang('en')" id="btn-en">🇬🇧</button>
-                <button onclick="setLang('ua')" id="btn-ua">🇺🇦</button>
+                <button class="active" onclick="setLang('cz')">🇨🇿</button>
+                <button onclick="setLang('en')">🇬🇧</button>
+                <button onclick="setLang('ua')">🇺🇦</button>
             </div>
         </div>
     </nav>
@@ -182,7 +182,7 @@
                     <h3 data-lang="cz" class="visible">Výměny skel</h3>
                     <h3 data-lang="en">Glass Replacement</h3>
                     <h3 data-lang="ua">Заміна скла</h3>
-                    <p data-lang="cz" class="visible">Rychlá a čistá výměna poškozených nebo nevyhovujících tabulí.</p>
+                    <p data-lang="cz" class="visible">Rychlá a čistá výměna poškozených tabulí.</p>
                     <p data-lang="en">Fast and clean replacement of damaged panes.</p>
                     <p data-lang="ua">Швидка та чиста заміна пошкодженого скла.</p>
                 </div>
@@ -229,12 +229,25 @@
 
     <script>
         function setLang(lang) {
-            document.querySelectorAll('[data-lang]').forEach(el => {
+            // 1. Ocultar todos los elementos de idioma
+            const allElements = document.querySelectorAll('[data-lang]');
+            allElements.forEach(el => {
                 el.classList.remove('visible');
-                if (el.getAttribute('data-lang') === lang) el.classList.add('visible');
             });
-            document.querySelectorAll('.lang-picker button').forEach(btn => btn.classList.remove('active'));
-            document.getElementById('btn-' + lang).classList.add('active');
+
+            // 2. Mostrar solo los del idioma seleccionado
+            const selectedElements = document.querySelectorAll('[data-lang="' + lang + '"]');
+            selectedElements.forEach(el => {
+                el.classList.add('visible');
+            });
+
+            // 3. Actualizar estado de los botones de banderas
+            const allButtons = document.querySelectorAll('.lang-picker button');
+            allButtons.forEach(btn => btn.classList.remove('active'));
+            
+            // Buscar el botón clicado (el que tiene el onclick del idioma actual)
+            const activeBtn = document.querySelector(`button[onclick="setLang('${lang}')"]`);
+            if(activeBtn) activeBtn.classList.add('active');
         }
     </script>
 </body>
