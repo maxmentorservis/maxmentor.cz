@@ -41,13 +41,8 @@
         .nav-logo { font-weight: 800; font-size: 1.2rem; color: var(--blue-apple); text-decoration: none; }
         .nav-links { display: flex; gap: 25px; align-items: center; list-style: none; }
 
-        /* DROPDOWN PC */
         .dropdown { position: relative; display: flex; align-items: center; }
-        .dropdown-btn { 
-            background: none; border: none; font-size: 14px; font-weight: 600; 
-            color: var(--text-main); cursor: pointer; padding: 15px 0;
-            display: flex; align-items: center; gap: 4px;
-        }
+        .dropdown-btn { background: none; border: none; font-size: 14px; font-weight: 600; color: var(--text-main); cursor: pointer; padding: 15px 0; display: flex; align-items: center; gap: 4px; }
         .dropdown-btn::after { content: '▾'; font-size: 12px; opacity: 0; transform: translateY(-2px); transition: opacity 0.3s ease; }
         .dropdown:hover .dropdown-btn::after { opacity: 0.5; }
         .dropdown-menu {
@@ -60,7 +55,6 @@
         .dropdown-menu a { color: var(--text-main); padding: 12px 15px; text-decoration: none; display: block; font-size: 13px; font-weight: 500; border-radius: 12px; transition: 0.2s; }
         .dropdown-menu a:hover { background: var(--blue-apple); color: white; }
 
-        /* WHATSAPP FLOTANTE */
         .whatsapp-float {
             position: fixed; width: 60px; height: 60px; bottom: 40px; right: 40px;
             background-color: var(--whatsapp-green); color: #FFF; border-radius: 50px;
@@ -69,7 +63,6 @@
             text-decoration: none; transition: transform 0.3s ease;
         }
 
-        /* MOBILE MENU */
         .menu-toggle { display: none; font-size: 24px; cursor: pointer; background: none; border: none; }
         .mobile-sidebar {
             position: fixed; top: 0; right: -100%; width: 85%; height: 100%;
@@ -83,7 +76,8 @@
         /* SECCIONES */
         section { padding: 80px 8%; text-align: center; }
         .hero-title { font-size: clamp(40px, 8vw, 70px); font-weight: 800; letter-spacing: -3px; line-height: 1; margin-bottom: 10px; color: var(--blue-apple); }
-        .hero-subtitle { font-size: clamp(24px, 5vw, 42px); font-weight: 700; letter-spacing: -1px; margin-bottom: 30px; color: var(--text-main); opacity: 0.9; }
+        .hero-subtitle { font-size: clamp(24px, 5vw, 42px); font-weight: 700; letter-spacing: -1px; margin-bottom: 15px; color: var(--text-main); }
+        .location-tag { font-size: 16px; font-weight: 600; color: var(--text-secondary); margin-bottom: 30px; display: block; }
         
         .image-box { width: 65%; max-width: 650px; margin: 0 auto 30px auto; border-radius: 28px; overflow: hidden; box-shadow: 0 25px 50px rgba(0,0,0,0.12); background: var(--glass-card); padding: 10px; border: 1px solid var(--glass-border); }
         .image-box img { width: 100%; display: block; height: auto; border-radius: 20px; }
@@ -96,7 +90,6 @@
         .service-card h3 { font-size: 20px; margin-bottom: 12px; color: var(--blue-apple); font-weight: 700; }
         .service-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
 
-        /* CONTACTO */
         .contact-form-container { max-width: 600px; margin: 40px auto; background: var(--glass-card); backdrop-filter: blur(20px); padding: 40px; border-radius: 30px; border: 1px solid var(--glass-border); text-align: left; }
         input, textarea { width: 100%; padding: 15px; margin-bottom: 15px; border-radius: 12px; border: 1px solid rgba(0,0,0,0.1); background: rgba(255,255,255,0.8); font-size: 16px; outline: none; }
         .btn-submit { width: 100%; background: var(--blue-apple); color: white; padding: 18px; border-radius: 12px; border: none; font-size: 17px; font-weight: 700; cursor: pointer; }
@@ -105,6 +98,9 @@
         [data-lang].visible { display: block; }
         .lang-picker button { background: none; border: none; cursor: pointer; font-size: 1.2rem; margin-left: 10px; opacity: 0.4; transition: 0.3s; }
         .lang-picker button.active { opacity: 1; transform: scale(1.2); }
+
+        footer { padding: 40px 8%; background: rgba(255,255,255,0.2); border-top: 1px solid var(--glass-border); }
+        .footer-phone { font-size: 24px; font-weight: 800; color: var(--blue-apple); text-decoration: none; margin-bottom: 10px; display: block; }
 
         @media (max-width: 850px) { .nav-links { display: none; } .menu-toggle { display: block; } .image-box { width: 95%; } }
     </style>
@@ -158,6 +154,7 @@
             <span data-lang="en">Crystal Clarity.</span>
             <span data-lang="ua">Кришталева чистота.</span>
         </h2>
+        <span class="location-tag">Prague, Czech Republic</span>
         <div class="image-box"><img src="antes-despues.png"></div>
     </section>
 
@@ -245,7 +242,10 @@
         </div>
     </section>
 
-    <footer><p>© 2026 Max mentor servis | Prague, Czech Republic</p></footer>
+    <footer>
+        <a href="tel:+420777000000" class="footer-phone">+420 777 000 000</a>
+        <p>© 2026 Max mentor servis | Prague, Czech Republic</p>
+    </footer>
 
     <script>
         function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('active'); }
