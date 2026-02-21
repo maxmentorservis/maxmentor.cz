@@ -30,23 +30,42 @@
             overflow-x: hidden; 
         }
 
-        .top-bar { background: var(--blue-apple); color: white; text-align: center; padding: 8px 0; font-size: 14px; font-weight: 700; position: fixed; top: 0; width: 100%; z-index: 10000; }
+        /* BARRA SUPERIOR */
+        .top-bar { 
+            background: var(--blue-apple); 
+            color: white; 
+            text-align: center; 
+            padding: 8px 5%; 
+            font-size: 12px; 
+            font-weight: 700; 
+            position: fixed; 
+            top: 0; 
+            width: 100%; 
+            z-index: 10000; 
+            display: flex; 
+            justify-content: center; 
+            gap: 15px; 
+            flex-wrap: wrap;
+        }
         .top-bar a { color: white; text-decoration: none; }
 
+        /* NAVEGACIÓN */
         nav { 
             background: var(--glass-nav); 
             backdrop-filter: saturate(180%) blur(20px); 
-            height: 52px; width: 100%; position: fixed; top: 32px; z-index: 9999; 
+            height: 52px; width: 100%; position: fixed; 
+            top: 32px; 
+            z-index: 9999; 
             display: flex; justify-content: space-between; align-items: center; 
             padding: 0 8%; border-bottom: 1px solid rgba(255,255,255,0.2); 
         }
+        @media (max-width: 600px) { nav { top: 48px; } }
+
         .nav-logo { font-weight: 800; font-size: 1.1rem; color: var(--blue-apple); text-decoration: none; }
         .nav-links { display: flex; gap: 20px; align-items: center; list-style: none; }
 
-        /* MENU MOBILE ICON */
         .menu-toggle { display: none; background: none; border: none; font-size: 24px; cursor: pointer; color: var(--text-main); }
 
-        /* SIDEBAR MOBILE */
         .mobile-sidebar {
             position: fixed; top: 0; right: -100%; width: 280px; height: 100%;
             background: white; z-index: 10001; padding: 40px 20px;
@@ -55,34 +74,30 @@
         }
         .mobile-sidebar.active { right: 0; }
         .mobile-sidebar a { text-decoration: none; color: var(--text-main); font-size: 18px; font-weight: 700; border-bottom: 1px solid #eee; padding-bottom: 10px; }
-        .close-menu { align-self: flex-end; font-size: 30px; cursor: pointer; margin-bottom: 20px; }
 
         .dropdown { position: relative; }
-        .dropdown-btn { background: none; border: none; font-size: 13px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 4px; color: var(--text-main); }
+        .dropdown-btn { background: none; border: none; font-size: 13px; font-weight: 700; cursor: pointer; color: var(--text-main); }
         .dropdown-menu { position: absolute; top: 100%; left: 50%; transform: translateX(-50%); background: white; min-width: 260px; border-radius: 15px; box-shadow: 0 15px 40px rgba(0,0,0,0.1); padding: 10px; opacity: 0; visibility: hidden; transition: 0.3s; }
         .dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; }
         .dropdown-menu a { display: block; padding: 10px; text-decoration: none; color: var(--text-main); font-size: 13px; border-radius: 8px; }
-        .dropdown-menu a:hover { background: var(--blue-apple); color: white; }
 
         .contact-buttons { position: fixed; bottom: 30px; right: 30px; display: flex; flex-direction: column; gap: 15px; z-index: 10001; }
-        .btn-float { width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(0,0,0,0.2); transition: 0.3s; color: white; text-decoration: none; font-size: 24px; }
-        .btn-float:hover { transform: scale(1.1); }
+        .btn-float { width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(0,0,0,0.2); color: white; text-decoration: none; font-size: 22px; }
         .btn-whatsapp { background-color: var(--whatsapp-green); }
         .btn-phone { background-color: var(--blue-apple); }
 
-        section { padding: 100px 8% 60px 8%; text-align: center; }
-        .hero-title { font-size: clamp(40px, 8vw, 75px); font-weight: 800; letter-spacing: -3px; color: var(--blue-apple); line-height: 1; margin-bottom: 10px; }
-        .hero-subtitle { font-size: clamp(22px, 4vw, 38px); font-weight: 700; margin-bottom: 10px; }
-        .hero-info { font-size: 18px; font-weight: 600; color: var(--text-secondary); margin-bottom: 30px; }
+        section { padding: 140px 8% 60px 8%; text-align: center; }
+        .hero-title { font-size: clamp(38px, 8vw, 75px); font-weight: 800; letter-spacing: -3px; color: var(--blue-apple); line-height: 1; margin-bottom: 10px; }
+        .hero-subtitle { font-size: clamp(20px, 4vw, 36px); font-weight: 700; margin-bottom: 10px; }
+        .hero-info { font-size: 15px; font-weight: 600; color: var(--text-secondary); line-height: 1.8; margin-bottom: 30px; }
 
-        .image-box { width: 65%; max-width: 650px; margin: 0 auto 40px auto; border-radius: 28px; overflow: hidden; box-shadow: 0 25px 50px rgba(0,0,0,0.12); background: var(--glass-card); padding: 10px; border: 1px solid var(--glass-border); }
-        .image-box img { width: 100%; display: block; border-radius: 20px; }
+        .image-box { width: 100%; max-width: 650px; margin: 0 auto 40px auto; border-radius: 28px; overflow: hidden; box-shadow: 0 25px 50px rgba(0,0,0,0.12); background: var(--glass-card); padding: 10px; border: 1px solid var(--glass-border); }
+        .image-box img { width: 100%; display: block; border-radius: 20px; height: auto; }
 
-        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-top: 40px; }
-        .service-card { background: var(--glass-card); border-radius: 25px; border: 1px solid var(--glass-border); text-align: left; overflow: hidden; transition: 0.3s; }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 40px; }
+        .service-card { background: var(--glass-card); border-radius: 25px; border: 1px solid var(--glass-border); text-align: left; overflow: hidden; }
         .service-card img { width: 100%; height: 200px; object-fit: cover; }
         .service-card-content { padding: 25px; }
-        .service-card h3 { color: var(--blue-apple); margin-bottom: 10px; font-size: 1.2rem; }
 
         .contact-form { max-width: 600px; margin: 0 auto; background: var(--glass-card); padding: 40px; border-radius: 30px; border: 1px solid var(--glass-border); text-align: left; }
         input, textarea { width: 100%; padding: 15px; margin-bottom: 15px; border-radius: 12px; border: 1px solid rgba(0,0,0,0.1); outline: none; }
@@ -93,21 +108,22 @@
         .lang-picker button { background: none; border: none; cursor: pointer; font-size: 1.2rem; opacity: 0.5; transition: 0.3s; }
         .lang-picker button.active { opacity: 1; transform: scale(1.2); }
 
-        footer { padding: 60px 8%; text-align: center; border-top: 1px solid var(--glass-border); }
+        footer { padding: 60px 8%; text-align: center; border-top: 1px solid var(--glass-border); background: rgba(255,255,255,0.1); }
+        .footer-link { color: var(--blue-apple); text-decoration: none; font-weight: 700; display: block; margin: 8px 0; font-size: 16px; }
 
-        /* RESPONSIVE */
         @media (max-width: 850px) { 
             .nav-links { display: none; } 
-            .menu-toggle { display: block; }
-            .image-box { width: 95%; } 
-            .hero-title { font-size: 45px; }
+            .menu-toggle { display: block; } 
+            section { padding-top: 180px; }
         }
     </style>
 </head>
 <body>
 
     <div class="top-bar">
-        📍 Prague, CZ | 📞 <a href="tel:+420777589176">+420 777 589 176</a>
+        <span>📍 Prague, CZ</span>
+        <span>📞 <a href="tel:+420777000000">+420 777 000 000</a></span>
+        <span>✉️ <a href="mailto:info.maxmentorservis@seznam.cz">info.maxmentorservis@seznam.cz</a></span>
     </div>
 
     <nav>
@@ -122,9 +138,7 @@
                 <div class="dropdown-menu">
                     <a href="#servis1"><span data-lang="cz" class="visible">Servis oken a dveří</span><span data-lang="en">Window & Door Service</span><span data-lang="ua">Сервіс вікон та дверей</span></a>
                     <a href="#servis2"><span data-lang="cz" class="visible">Dodání a montáž</span><span data-lang="en">Supply & Installation</span><span data-lang="ua">Доставка та монтаж</span></a>
-                    <a href="#servis3"><span data-lang="cz" class="visible">Výškové práce</span><span data-lang="en">High-Altitude Works</span><span data-lang="ua">Висотні роботи</span></a>
                     <a href="#servis4"><span data-lang="cz" class="visible">Výměny skel</span><span data-lang="en">Glass Replacement</span><span data-lang="ua">Заміна скла</span></a>
-                    <a href="#servis5"><span data-lang="cz" class="visible">Nadrozměrná skla</span><span data-lang="en">Large Glass</span><span data-lang="ua">Велике скло</span></a>
                 </div>
             </div>
             <a href="#contacto" style="text-decoration:none; color:inherit; font-weight:700; font-size:13px;">
@@ -140,23 +154,22 @@
     </nav>
 
     <div class="mobile-sidebar" id="mobileSidebar">
-        <span class="close-menu" onclick="toggleMobileMenu()">×</span>
+        <span onclick="toggleMobileMenu()" style="font-size:35px; cursor:pointer; align-self: flex-end;">×</span>
         <a href="#specializace" onclick="toggleMobileMenu()">Služby / Services</a>
         <a href="#contacto" onclick="toggleMobileMenu()">Kontakt</a>
-        <div style="margin-top: 20px;">
-            <p style="font-size: 12px; margin-bottom: 10px;">Jazyk / Language:</p>
-            <button onclick="setLang('cz')" style="font-size: 25px; background:none; border:none;">🇨🇿</button>
-            <button onclick="setLang('en')" style="font-size: 25px; background:none; border:none; margin: 0 15px;">🇬🇧</button>
-            <button onclick="setLang('ua')" style="font-size: 25px; background:none; border:none;">🇺🇦</button>
+        <div style="margin-top:30px; display: flex; gap: 15px;">
+            <button onclick="setLang('cz')" style="font-size: 25px; border:none; background:none;">🇨🇿</button>
+            <button onclick="setLang('en')" style="font-size: 25px; border:none; background:none;">🇬🇧</button>
+            <button onclick="setLang('ua')" style="font-size: 25px; border:none; background:none;">🇺🇦</button>
         </div>
     </div>
 
     <div class="contact-buttons">
-        <a href="https://wa.me/420777589176" class="btn-float btn-whatsapp" target="_blank">W</a>
-        <a href="tel:+420777589176" class="btn-float btn-phone">📞</a>
+        <a href="https://wa.me/420777000000" class="btn-float btn-whatsapp" target="_blank">W</a>
+        <a href="tel:+420777000000" class="btn-float btn-phone">📞</a>
     </div>
 
-    <section id="home" style="padding-top: 160px;">
+    <section id="home">
         <h1 class="hero-title">Max mentor servis</h1>
         <h2 class="hero-subtitle">
             <span data-lang="cz" class="visible">Křišťálová čistota.</span>
@@ -164,9 +177,11 @@
             <span data-lang="ua">Кришталева чистота.</span>
         </h2>
         <div class="hero-info">
-            📍 Prague, Czech Republic | 📞 +420 777 589 176
+            📍 Prague, Czech Republic<br>
+            📞 +420 777 000 000<br>
+            ✉️ info.maxmentorservis@seznam.cz
         </div>
-        <div class="image-box"><img src="antes-despues.png"></div>
+        <div class="image-box"><img src="antes-despues.png" alt="Antes y Después"></div>
     </section>
 
     <section id="specializace">
@@ -183,8 +198,8 @@
                     <h3 data-lang="en">Window & Door Service</h3>
                     <h3 data-lang="ua">Сервіс вікон та дверей</h3>
                     <p data-lang="cz" class="visible">Kompletní seřízení, údržba a opravy pro bezchybný chod.</p>
-                    <p data-lang="en">Complete adjustment, maintenance and repairs.</p>
-                    <p data-lang="ua">Повне регулювання, обслуговування та ремонт.</p>
+                    <p data-lang="en">Complete adjustment and maintenance for flawless operation.</p>
+                    <p data-lang="ua">Повне обслуговування та ремонт для безперебійної роботи.</p>
                 </div>
             </div>
             <div class="service-card" id="servis2">
@@ -194,19 +209,8 @@
                     <h3 data-lang="en">Supply & Installation</h3>
                     <h3 data-lang="ua">Доставка та монтаж</h3>
                     <p data-lang="cz" class="visible">Prvotřídní produkty instalované s maximální precizností.</p>
-                    <p data-lang="en">Premium products installed with maximum precision.</p>
+                    <p data-lang="en">Top-quality products installed with high precision.</p>
                     <p data-lang="ua">Високоякісна продукція, встановлена з максимальною точністю.</p>
-                </div>
-            </div>
-            <div class="service-card" id="servis3">
-                <img src="bezpecnostni.png">
-                <div class="service-card-content">
-                    <h3 data-lang="cz" class="visible">Výškové práce</h3>
-                    <h3 data-lang="en">High-Altitude Works</h3>
-                    <h3 data-lang="ua">Висотні роботи</h3>
-                    <p data-lang="cz" class="visible">Profesionální zásahy i na těžko dostupných místech.</p>
-                    <p data-lang="en">Professional work in hard-to-reach places.</p>
-                    <p data-lang="ua">Професійна робота у важкодоступних місцях.</p>
                 </div>
             </div>
             <div class="service-card" id="servis4">
@@ -215,20 +219,9 @@
                     <h3 data-lang="cz" class="visible">Výměny skel</h3>
                     <h3 data-lang="en">Glass Replacement</h3>
                     <h3 data-lang="ua">Заміна скла</h3>
-                    <p data-lang="cz" class="visible">Rychlá a čistá výměna poškozených tabulí.</p>
-                    <p data-lang="en">Fast and clean replacement of damaged panes.</p>
+                    <p data-lang="cz" class="visible">Rychlá a čistá výměna poškozených oken.</p>
+                    <p data-lang="en">Fast and clean replacement of damaged glass.</p>
                     <p data-lang="ua">Швидка та чиста заміна пошкодженого скла.</p>
-                </div>
-            </div>
-            <div class="service-card" id="servis5">
-                <img src="pricky.png">
-                <div class="service-card-content">
-                    <h3 data-lang="cz" class="visible">Výměny nadrozměrných skel</h3>
-                    <h3 data-lang="en">Large Glass Replacement</h3>
-                    <h3 data-lang="ua">Заміна великогабаритного скла</h3>
-                    <p data-lang="cz" class="visible">Specializovaná technika pro manipulaci s velkými formáty.</p>
-                    <p data-lang="en">Specialized equipment for large glass formats.</p>
-                    <p data-lang="ua">Спеціальна техніка для роботи з великим склом.</p>
                 </div>
             </div>
         </div>
@@ -238,7 +231,7 @@
         <h2 style="margin-bottom:30px;">
             <span data-lang="cz" class="visible">Kontaktujte nás</span>
             <span data-lang="en">Contact Us</span>
-            <span data-lang="ua">Зв'яжіться з нами</span>
+            <span data-lang="ua">Зв'яжіться con nosotros</span>
         </h2>
         <div class="contact-form">
             <form action="https://formspree.io/f/tu-codigo" method="POST">
@@ -255,28 +248,21 @@
     </section>
 
     <footer>
-        <h3 style="color:var(--blue-apple); font-size:28px; margin-bottom:10px;">Max mentor servis</h3>
-        <p>Prague, Czech Republic</p>
-        <p style="font-weight:800; margin-top:10px; font-size:20px;">+420 777 589 176</p>
+        <h3 style="color:var(--blue-apple); margin-bottom:15px; font-weight:800;">Max mentor servis</h3>
+        <a href="tel:+420777000000" class="footer-link">+420 777 000 000</a>
+        <a href="mailto:info.maxmentorservis@seznam.cz" class="footer-link">info.maxmentorservis@seznam.cz</a>
+        <p style="margin-top:20px; font-size:12px; opacity:0.6; font-weight:600;">📍 Prague, Czech Republic</p>
     </footer>
 
     <script>
         function setLang(lang) {
-            const allElements = document.querySelectorAll('[data-lang]');
-            allElements.forEach(el => el.classList.remove('visible'));
-            const selectedElements = document.querySelectorAll('[data-lang="' + lang + '"]');
-            selectedElements.forEach(el => el.classList.add('visible'));
-            const allButtons = document.querySelectorAll('.lang-picker button');
-            allButtons.forEach(btn => btn.classList.remove('active'));
-            const activeBtn = document.querySelector(`button[onclick="setLang('${lang}')"]`);
-            if(activeBtn) activeBtn.classList.add('active');
+            document.querySelectorAll('[data-lang]').forEach(el => el.classList.remove('visible'));
+            document.querySelectorAll('[data-lang="' + lang + '"]').forEach(el => el.classList.add('visible'));
+            document.querySelectorAll('.lang-picker button').forEach(btn => btn.classList.remove('active'));
+            const btn = document.querySelector(`button[onclick="setLang('${lang}')"]`);
+            if(btn) btn.classList.add('active');
         }
-
-        function toggleMobileMenu() {
-            document.getElementById('mobileSidebar').classList.toggle('active');
-        }
+        function toggleMobileMenu() { document.getElementById('mobileSidebar').classList.toggle('active'); }
     </script>
 </body>
 </html>
-
-
