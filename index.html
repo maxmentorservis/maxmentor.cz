@@ -30,32 +30,16 @@
             overflow-x: hidden; 
         }
 
-        /* BARRA SUPERIOR */
         .top-bar { 
-            background: var(--blue-apple); 
-            color: white; 
-            text-align: center; 
-            padding: 8px 5%; 
-            font-size: 12px; 
-            font-weight: 700; 
-            position: fixed; 
-            top: 0; 
-            width: 100%; 
-            z-index: 10000; 
-            display: flex; 
-            justify-content: center; 
-            gap: 15px; 
-            flex-wrap: wrap;
+            background: var(--blue-apple); color: white; text-align: center; padding: 8px 5%; 
+            font-size: 12px; font-weight: 700; position: fixed; top: 0; width: 100%; z-index: 10000; 
+            display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;
         }
         .top-bar a { color: white; text-decoration: none; }
 
-        /* NAVEGACIÓN */
         nav { 
-            background: var(--glass-nav); 
-            backdrop-filter: saturate(180%) blur(20px); 
-            height: 52px; width: 100%; position: fixed; 
-            top: 32px; 
-            z-index: 9999; 
+            background: var(--glass-nav); backdrop-filter: saturate(180%) blur(20px); 
+            height: 52px; width: 100%; position: fixed; top: 32px; z-index: 9999; 
             display: flex; justify-content: space-between; align-items: center; 
             padding: 0 8%; border-bottom: 1px solid rgba(255,255,255,0.2); 
         }
@@ -63,7 +47,6 @@
 
         .nav-logo { font-weight: 800; font-size: 1.1rem; color: var(--blue-apple); text-decoration: none; }
         .nav-links { display: flex; gap: 20px; align-items: center; list-style: none; }
-
         .menu-toggle { display: none; background: none; border: none; font-size: 24px; cursor: pointer; color: var(--text-main); }
 
         .mobile-sidebar {
@@ -111,11 +94,7 @@
         footer { padding: 60px 8%; text-align: center; border-top: 1px solid var(--glass-border); background: rgba(255,255,255,0.1); }
         .footer-link { color: var(--blue-apple); text-decoration: none; font-weight: 700; display: block; margin: 8px 0; font-size: 16px; }
 
-        @media (max-width: 850px) { 
-            .nav-links { display: none; } 
-            .menu-toggle { display: block; } 
-            section { padding-top: 180px; }
-        }
+        @media (max-width: 850px) { .nav-links { display: none; } .menu-toggle { display: block; } section { padding-top: 180px; } }
     </style>
 </head>
 <body>
@@ -136,18 +115,20 @@
                     <span data-lang="ua">Послуги ▾</span>
                 </button>
                 <div class="dropdown-menu">
-                    <a href="#servis1"><span data-lang="cz" class="visible">Servis oken a dveří</span><span data-lang="en">Window & Door Service</span><span data-lang="ua">Сервіс вікон та дверей</span></a>
-                    <a href="#servis2"><span data-lang="cz" class="visible">Dodání a montáž</span><span data-lang="en">Supply & Installation</span><span data-lang="ua">Доставка та монтаж</span></a>
-                    <a href="#servis4"><span data-lang="cz" class="visible">Výměny skel</span><span data-lang="en">Glass Replacement</span><span data-lang="ua">Заміна скла</span></a>
+                    <a href="#servis1"><span data-lang="cz" class="visible">Servis oken a dveří</span><span data-lang="en">Window & Door Service</span></a>
+                    <a href="#servis2"><span data-lang="cz" class="visible">Dodání a montáž</span><span data-lang="en">Supply & Installation</span></a>
+                    <a href="#servis3"><span data-lang="cz" class="visible">Výškové práce</span><span data-lang="en">High-Altitude Works</span></a>
+                    <a href="#servis4"><span data-lang="cz" class="visible">Výměny skel</span><span data-lang="en">Glass Replacement</span></a>
+                    <a href="#servis5"><span data-lang="cz" class="visible">Nadrozměrná skla</span><span data-lang="en">Large Glass</span></a>
                 </div>
             </div>
             <a href="#contacto" style="text-decoration:none; color:inherit; font-weight:700; font-size:13px;">
                 <span data-lang="cz" class="visible">Kontakt</span><span data-lang="en">Contact</span><span data-lang="ua">Контакт</span>
             </a>
             <div class="lang-picker">
-                <button class="active" onclick="setLang('cz')" id="btn-cz">🇨🇿</button>
-                <button onclick="setLang('en')" id="btn-en">🇬🇧</button>
-                <button onclick="setLang('ua')" id="btn-ua">🇺🇦</button>
+                <button class="active" onclick="setLang('cz')">🇨🇿</button>
+                <button onclick="setLang('en')">🇬🇧</button>
+                <button onclick="setLang('ua')">🇺🇦</button>
             </div>
         </div>
         <button class="menu-toggle" onclick="toggleMobileMenu()">☰</button>
@@ -158,9 +139,9 @@
         <a href="#specializace" onclick="toggleMobileMenu()">Služby / Services</a>
         <a href="#contacto" onclick="toggleMobileMenu()">Kontakt</a>
         <div style="margin-top:30px; display: flex; gap: 15px;">
-            <button onclick="setLang('cz')" style="font-size: 25px; border:none; background:none;">🇨🇿</button>
-            <button onclick="setLang('en')" style="font-size: 25px; border:none; background:none;">🇬🇧</button>
-            <button onclick="setLang('ua')" style="font-size: 25px; border:none; background:none;">🇺🇦</button>
+            <button onclick="setLang('cz')">🇨🇿</button>
+            <button onclick="setLang('en')">🇬🇧</button>
+            <button onclick="setLang('ua')">🇺🇦</button>
         </div>
     </div>
 
@@ -181,14 +162,13 @@
             📞 +420 777 589 176<br>
             ✉️ info.maxmentorservis@seznam.cz
         </div>
-        <div class="image-box"><img src="antes-despues.png" alt="Antes y Después"></div>
+        <div class="image-box"><img src="antes-despues.png"></div>
     </section>
 
     <section id="specializace">
         <h2 style="margin-bottom: 40px;">
             <span data-lang="cz" class="visible">Naše specializace</span>
             <span data-lang="en">Our Specialization</span>
-            <span data-lang="ua">Наша спеціалізація</span>
         </h2>
         <div class="services-grid">
             <div class="service-card" id="servis1">
@@ -196,10 +176,8 @@
                 <div class="service-card-content">
                     <h3 data-lang="cz" class="visible">Servis oken a dveří</h3>
                     <h3 data-lang="en">Window & Door Service</h3>
-                    <h3 data-lang="ua">Сервіс вікон та дверей</h3>
                     <p data-lang="cz" class="visible">Kompletní seřízení, údržba a opravy pro bezchybný chod.</p>
                     <p data-lang="en">Complete adjustment and maintenance for flawless operation.</p>
-                    <p data-lang="ua">Повне обслуговування та ремонт для безперебійної роботи.</p>
                 </div>
             </div>
             <div class="service-card" id="servis2">
@@ -207,10 +185,17 @@
                 <div class="service-card-content">
                     <h3 data-lang="cz" class="visible">Dodání a montáž</h3>
                     <h3 data-lang="en">Supply & Installation</h3>
-                    <h3 data-lang="ua">Доставка та монтаж</h3>
                     <p data-lang="cz" class="visible">Prvotřídní produkty instalované s maximální precizností.</p>
                     <p data-lang="en">Top-quality products installed with high precision.</p>
-                    <p data-lang="ua">Високоякісна продукція, встановлена з максимальною точністю.</p>
+                </div>
+            </div>
+            <div class="service-card" id="servis3">
+                <img src="bezpecnostni.png">
+                <div class="service-card-content">
+                    <h3 data-lang="cz" class="visible">Výškové práce</h3>
+                    <h3 data-lang="en">High-Altitude Works</h3>
+                    <p data-lang="cz" class="visible">Profesionální zásahy i na těžko dostupných místech.</p>
+                    <p data-lang="en">Professional work in hard-to-reach places.</p>
                 </div>
             </div>
             <div class="service-card" id="servis4">
@@ -218,31 +203,30 @@
                 <div class="service-card-content">
                     <h3 data-lang="cz" class="visible">Výměny skel</h3>
                     <h3 data-lang="en">Glass Replacement</h3>
-                    <h3 data-lang="ua">Заміна скла</h3>
                     <p data-lang="cz" class="visible">Rychlá a čistá výměna poškozených oken.</p>
                     <p data-lang="en">Fast and clean replacement of damaged glass.</p>
-                    <p data-lang="ua">Швидка та чиста заміна пошкодженого скла.</p>
+                </div>
+            </div>
+            <div class="service-card" id="servis5">
+                <img src="pricky.png">
+                <div class="service-card-content">
+                    <h3 data-lang="cz" class="visible">Výměny nadrozměrných skel</h3>
+                    <h3 data-lang="en">Large Glass Replacement</h3>
+                    <p data-lang="cz" class="visible">Specializovaná technika pro manipulaci s velkými formáty.</p>
+                    <p data-lang="en">Specialized equipment for large glass formats.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <section id="contacto">
-        <h2 style="margin-bottom:30px;">
-            <span data-lang="cz" class="visible">Kontaktujte nás</span>
-            <span data-lang="en">Contact Us</span>
-            <span data-lang="ua">Зв'яжіться з нами</span>
-        </h2>
         <div class="contact-form">
+            <h2 style="margin-bottom:20px;">Kontaktujte nás</h2>
             <form action="https://formspree.io/f/tu-codigo" method="POST">
-                <input type="text" name="name" required placeholder="Jméno / Name / Ім'я">
+                <input type="text" name="name" required placeholder="Jméno / Name">
                 <input type="text" name="contact" required placeholder="Telefon / E-mail">
                 <textarea name="message" rows="4" placeholder="..."></textarea>
-                <button type="submit" class="btn-submit">
-                    <span data-lang="cz" class="visible">Odeslat poptávku</span>
-                    <span data-lang="en">Send Inquiry</span>
-                    <span data-lang="ua">Надіслати запит</span>
-                </button>
+                <button type="submit" class="btn-submit">Odeslat poptávku</button>
             </form>
         </div>
     </section>
