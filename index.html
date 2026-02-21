@@ -38,7 +38,7 @@
             display: flex; justify-content: space-between; align-items: center; 
             padding: 0 8%; border-bottom: 1px solid rgba(255,255,255,0.2); 
         }
-        .nav-logo { font-weight: 800; font-size: 1.1rem; color: var(--text-main); text-decoration: none; }
+        .nav-logo { font-weight: 800; font-size: 1.2rem; color: var(--blue-apple); text-decoration: none; }
         .nav-links { display: flex; gap: 25px; align-items: center; list-style: none; }
 
         /* DROPDOWN PC */
@@ -68,7 +68,6 @@
             z-index: 10001; display: flex; align-items: center; justify-content: center;
             text-decoration: none; transition: transform 0.3s ease;
         }
-        .whatsapp-float:hover { transform: scale(1.1); }
 
         /* MOBILE MENU */
         .menu-toggle { display: none; font-size: 24px; cursor: pointer; background: none; border: none; }
@@ -76,21 +75,23 @@
             position: fixed; top: 0; right: -100%; width: 85%; height: 100%;
             background: rgba(162, 210, 223, 0.98); backdrop-filter: blur(30px);
             z-index: 10000; padding: 60px 30px; transition: 0.4s;
-            display: flex; flex-direction: column; gap: 15px; box-shadow: -10px 0 30px rgba(0,0,0,0.05);
+            display: flex; flex-direction: column; gap: 15px;
         }
         .mobile-sidebar.active { right: 0; }
         .mobile-sidebar a { text-decoration: none; color: var(--text-main); font-size: 16px; font-weight: 700; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 8px; }
 
         /* SECCIONES */
         section { padding: 80px 8%; text-align: center; }
-        h1 { font-size: clamp(34px, 7vw, 56px); font-weight: 800; letter-spacing: -2px; line-height: 1.1; margin-bottom: 20px; }
-        .image-box { width: 65%; max-width: 650px; margin: 30px auto; border-radius: 28px; overflow: hidden; box-shadow: 0 25px 50px rgba(0,0,0,0.12); background: var(--glass-card); padding: 10px; border: 1px solid var(--glass-border); }
+        .hero-title { font-size: clamp(40px, 8vw, 70px); font-weight: 800; letter-spacing: -3px; line-height: 1; margin-bottom: 10px; color: var(--blue-apple); }
+        .hero-subtitle { font-size: clamp(24px, 5vw, 42px); font-weight: 700; letter-spacing: -1px; margin-bottom: 30px; color: var(--text-main); opacity: 0.9; }
+        
+        .image-box { width: 65%; max-width: 650px; margin: 0 auto 30px auto; border-radius: 28px; overflow: hidden; box-shadow: 0 25px 50px rgba(0,0,0,0.12); background: var(--glass-card); padding: 10px; border: 1px solid var(--glass-border); }
         .image-box img { width: 100%; display: block; height: auto; border-radius: 20px; }
 
         .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; max-width: 1200px; margin: 40px auto; }
         .service-card { background: var(--glass-card); backdrop-filter: blur(15px); border-radius: 30px; border: 1px solid var(--glass-border); text-align: left; transition: 0.4s; overflow: hidden; display: flex; flex-direction: column; }
         .service-card:hover { transform: translateY(-10px); background: rgba(255,255,255,0.7); }
-        .service-img { width: 100%; height: 230px; object-fit: cover; border-bottom: 1px solid var(--glass-border); }
+        .service-img { width: 100%; height: 230px; object-fit: cover; }
         .service-content { padding: 30px; }
         .service-card h3 { font-size: 20px; margin-bottom: 12px; color: var(--blue-apple); font-weight: 700; }
         .service-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
@@ -105,7 +106,7 @@
         .lang-picker button { background: none; border: none; cursor: pointer; font-size: 1.2rem; margin-left: 10px; opacity: 0.4; transition: 0.3s; }
         .lang-picker button.active { opacity: 1; transform: scale(1.2); }
 
-        @media (max-width: 850px) { .nav-links { display: none; } .menu-toggle { display: block; } .image-box { width: 95%; } .whatsapp-float { width: 50px; height: 50px; bottom: 20px; right: 20px; font-size: 25px; } }
+        @media (max-width: 850px) { .nav-links { display: none; } .menu-toggle { display: block; } .image-box { width: 95%; } }
     </style>
 </head>
 <body>
@@ -131,7 +132,7 @@
                     <a href="#servis5"><span data-lang="cz" class="visible">Výměny nadrozměrných skel</span><span data-lang="en">Large Glass</span><span data-lang="ua">Заміна великого скла</span></a>
                 </div>
             </div>
-            <a href="#contacto" style="text-decoration:none; color:inherit; font-weight:600; font-size:14px;"><span data-lang="cz" class="visible">Kontakt</span><span data-lang="en">Contact</span><span data-lang="ua">Контакт</span></a>
+            <a href="#contacto" style="text-decoration:none; color:inherit; font-weight:600; font-size:14px;"><span data-lang="cz" class="visible">Kontakt</span><span data-lang="ua">Контакт</span></a>
             <div class="lang-picker">
                 <button class="active" onclick="setLang('cz')" id="f-cz">🇨🇿</button>
                 <button onclick="setLang('en')" id="f-en">🇬🇧</button>
@@ -150,10 +151,13 @@
         <a href="#contacto" onclick="toggleMenu()"><span data-lang="cz" class="visible">Kontakt</span><span data-lang="ua">Контакт</span></a>
     </div>
 
-    <section id="home" style="padding-top: 150px;">
-        <h1 data-lang="cz" class="visible">Křišťálová čistota.</h1>
-        <h1 data-lang="en">Crystal Clarity.</h1>
-        <h1 data-lang="ua">Кришталева чистота.</h1>
+    <section id="home" style="padding-top: 150px; padding-bottom: 40px;">
+        <h1 class="hero-title">Max mentor servis</h1>
+        <h2 class="hero-subtitle">
+            <span data-lang="cz" class="visible">Křišťálová čistota.</span>
+            <span data-lang="en">Crystal Clarity.</span>
+            <span data-lang="ua">Кришталева чистота.</span>
+        </h2>
         <div class="image-box"><img src="antes-despues.png"></div>
     </section>
 
@@ -225,26 +229,18 @@
                 <h3 data-lang="en">Modern Offices in Prague</h3>
                 <h3 data-lang="ua">Сучасні офіси в Празі</h3>
                 <p data-lang="cz" class="visible">Ukázka naší precizní montáže skleněných příček.</p>
-                <p data-lang="en">Showcase of our precision installation of glass partitions.</p>
-                <p data-lang="ua">Демонстрація нашого точного монтажу скляних перегородок.</p>
             </div>
         </div>
     </section>
 
     <section id="contacto">
         <h2 data-lang="cz" class="visible">Napište nám</h2>
-        <h2 data-lang="en">Contact us</h2>
-        <h2 data-lang="ua">Напишіть нам</h2>
         <div class="contact-form-container">
             <form action="https://formspree.io/f/tu-codigo" method="POST">
                 <input type="text" name="name" required placeholder="Jméno / Name / Ім'я">
                 <input type="text" name="contact" required placeholder="Telefon / E-mail">
                 <textarea name="message" rows="4" placeholder="Vaše poptávka..."></textarea>
-                <button type="submit" class="btn-submit">
-                    <span data-lang="cz" class="visible">Odeslat</span>
-                    <span data-lang="en">Send</span>
-                    <span data-lang="ua">Надіслати</span>
-                </button>
+                <button type="submit" class="btn-submit">Odeslat</button>
             </form>
         </div>
     </section>
